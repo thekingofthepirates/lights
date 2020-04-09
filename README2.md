@@ -1,6 +1,6 @@
-## Welcome to GitHub Pages
+## README
 
-### [HOME](home.html)
+### [HOME](home2.html)
 
 ### [INDEX](index2.md)
 
