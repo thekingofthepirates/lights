@@ -1,4 +1,4 @@
-# INDEX 2
+# INDEX
 
 ## [HOME](home2.html)  
 
