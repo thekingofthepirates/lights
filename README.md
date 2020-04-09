@@ -1,6 +1,8 @@
 ## Welcome to GitHub Pages
 
-[HOME](home.html)
+### [HOME](home.html)
+
+### [INDEX](index.md)
 
 You can use the [editor on GitHub](https://github.com/pulkitgoyal56/personal_website/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 
