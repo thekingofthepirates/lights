@@ -1,8 +1,10 @@
-## README
+# README
 
-### [INDEX HTML](index.html)
+## [README](README.md)  
 
-### [INDEX MARKDOWN](index.md)
+## [INDEX MARKDOWN](index.md)  
+
+## [INDEX HTML](index.html)  
 
 You can use the [editor on GitHub](https://github.com/pulkitgoyal56/personal_website/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 

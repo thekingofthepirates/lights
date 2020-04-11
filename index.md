@@ -1,5 +1,7 @@
 # INDEX MARKDOWN
 
-## [INDEX HTML](index.html)  
+## [README](README.md)  
 
-## [README](README2.md)  
+## [INDEX MARKDOWN](index.md)  
+
+## [INDEX HTML](index.html)  
