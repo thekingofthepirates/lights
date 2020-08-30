@@ -1,13 +1,20 @@
 # HOME
 
-Hello, I am Pulkit Goyal. I am just starting to make this website. I plan to put the following things in here.
+Hello, I am Pulkit Goyal. I am just starting to make this website. 
+Currently, you can see the following here.
 
-1. Curriculum Vitae
-2. Portfolio
-3. Photographs I took
-4. A few pictures of past projects
-5. And some fun interactive projects I wanna build
-6. And and and some easter eggs for friends
-7. Maybe a blog about random things
+- My Resume/CV/Portfolio
+  - [Brief](resume.html)
+  - [Little Details](cv.html)
+  - [Full Length](portfolio.html)
+
+---
+
+## Later, I plan to put the following things in here
+
+1. My favorites of the photographs I took since 2019
+2. And some fun interactive projects I wanna build
+3. And and and some easter eggs for friends
+4. Maybe a blog about random things
 
 Sooner than later.
