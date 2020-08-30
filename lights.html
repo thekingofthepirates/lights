@@ -1,0 +1,25 @@
+<html>
+<title>Pulkit Goyal</title>
+
+<body>
+    <input type="text" placeholder="What is the secret?" id="secret">
+    <button type="On" onclick="turn('On')">On</button>
+    <button type="Off" onclick="turn('Off')">Off</button>
+    <script>
+        function turn(state) {
+            var secret = document.getElementById("secret").value;
+            if (secret) {
+                var body = JSON.stringify({
+                    message: state,
+                    secret: secret
+                });
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "http://18.183.224.40:8000/bedroom/lights", true);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.setRequestHeader('Content-Length', body.length.toString());
+                xhr.send(body);
+            }
+            else alert("Forgot something?")
+        }
+    </script>
+</body>

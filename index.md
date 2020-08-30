@@ -7,14 +7,15 @@ Currently, you can see the following here.
   - [Brief](resume.html)
   - [Little Details](cv.html)
   - [Full Length](portfolio.html)
+- Some of my favorites of the photographs that I took since 2019
+- And and and some easter eggs for friends
+  - Let there be [light](lights.html)!
 
 ---
 
 ## Later, I plan to put the following things in here
 
-1. My favorites of the photographs I took since 2019
-2. And some fun interactive projects I wanna build
-3. And and and some easter eggs for friends
-4. Maybe a blog about random things
+1. And some fun interactive projects I wanna build
+2. Maybe a blog about random things
 
 Sooner than later.
