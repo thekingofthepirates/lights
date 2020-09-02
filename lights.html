@@ -6,7 +6,6 @@
         .button {
             border: none;
             color: white;
-            /* padding: 15px 32px; */
             text-align: center;
             text-decoration: none;
             display: inline-block;
@@ -15,35 +14,56 @@
             cursor: pointer;
         }
 
-        .button_send {
+        #button_send {
             background-color: #ffee00;
             color: black;
-            width: 50px;
+            width: 52px;
         }
 
-        .button_on {
+        #button_on {
             background-color: #09ff00;
-            width: 350px;
+            width: 345px;
         }
 
-        .button_off {
+        #button_off {
             background-color: #ff0000;
-            width: 350px;
+            width: 345px;
+        }
+
+        #container {
+            height: 200px;
+            position: relative;
+            border: 3px solid green;
+        }
+
+        #form {
+            padding: 15px 30px;
+            border: 1px solid red;
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
         }
     </style>
 </head>
 <title>Panel</title>
 
 <body>
-    <input type="text" size="23" placeholder="What is the secret?" id="secret">
-    <input type="text" size="23" placeholder="Who are you?" id="username">
-    <br>
-    <input type="text" size="40" placeholder="What do you have to say?" id="message">
-    <button type="button" class="button button_send" id="send">Send</button>
-    <br>
-    <button type="button" class="button button_on" id="on">On</button>
-    <br>
-    <button type="button" class="button button_off" id="off">Off</button>
+    <div class="container">
+        <div id="form">
+            <input type="text" size="23" placeholder="What is the secret?" id="secret">
+            <input type="text" size="23" placeholder="Who are you?" id="username">
+            <br>
+            <input type="text" size="40" placeholder="What do you have to say?" id="message">
+            <button type="button" class="button" id="button_send">Send</button>
+            <br>
+            <button type="button" class="button" id="button_on">On</button>
+            <br>
+            <button type="button" class="button" id="button_off">Off</button>
+        </div>
+    </div>
     <script>
         document.getElementById("send").addEventListener("click", send, false);
         document.getElementById("on").addEventListener("click", on, false);
