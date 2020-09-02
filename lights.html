@@ -1,6 +1,7 @@
 <html>
 
 <head>
+    <title>Panel</title>
     <link rel="icon" type="image/x-icon" href="favicons/bulb.ico" />
     <style>
         .button {
@@ -30,15 +31,9 @@
             width: 345px;
         }
 
-        #container {
-            height: 200px;
-            position: relative;
-            border: 3px solid green;
-        }
-
-        #form {
+        .center {
             padding: 15px 30px;
-            border: 1px solid red;
+            border: 1px solid orange;
             margin: 0;
             position: absolute;
             top: 50%;
@@ -46,23 +41,28 @@
             -ms-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
         }
+
+        #watermark {
+            opacity: 0.05;
+            z-index: 99;
+            color: white;
+            border:none;
+        }
     </style>
 </head>
-<title>Panel</title>
 
 <body>
-    <div class="container">
-        <div id="form">
-            <input type="text" size="23" placeholder="What is the secret?" id="secret">
-            <input type="text" size="23" placeholder="Who are you?" id="username">
-            <br>
-            <input type="text" size="40" placeholder="What do you have to say?" id="message">
-            <button type="button" class="button" id="button_send">Send</button>
-            <br>
-            <button type="button" class="button" id="button_on">On</button>
-            <br>
-            <button type="button" class="button" id="button_off">Off</button>
-        </div>
+    <img class="center" id='watermark' src='media/bulb.png' alt="Bulb" />
+    <div class="center" id="form">
+        <input type="text" size="23" placeholder="What is the secret?" id="secret">
+        <input type="text" size="23" placeholder="Who are you?" id="username">
+        <br>
+        <input type="text" size="40" placeholder="What do you have to say?" id="message">
+        <button type="button" class="button" id="button_send">Send</button>
+        <br>
+        <button type="button" class="button" id="button_on">On</button>
+        <br>
+        <button type="button" class="button" id="button_off">Off</button>
     </div>
     <script>
         document.getElementById("send").addEventListener("click", send, false);
