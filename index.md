@@ -1,4 +1,6 @@
-# HOME
+# About Me
+
+---
 
 Hello, I am Pulkit Goyal. I am just starting to make this website.  
 Currently, you can see the following here.
@@ -19,3 +21,5 @@ Currently, you can see the following here.
 - Some fun interactive projects I've always wanted to build.
 
 Sooner than later.
+
+---
