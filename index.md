@@ -9,7 +9,7 @@ Currently, you can see the following here.
   - [Full Length](portfolio.html)
 - Some of my favorites of the photographs that I took since 2019.
 - And and and some easter eggs for friends.
-  1. Let there be [light](lights.html)!
+  - Let there be [light](lights.html)!
 
 ---
 
