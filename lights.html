@@ -46,15 +46,23 @@
             opacity: 0.05;
             z-index: -1;
             color: white;
-            border:none;
+            border: none;
+        }
+
+        #description {
+            border: 1px solid orange;
+            width: 100%
         }
     </style>
 </head>
 
 <body>
-    <img class="center" id='watermark' src='media/bulb.png' alt="Bulb" />
+    <div id="description">
+        <p align="center">With the panel, any secret bearer can control the lights in my bedroom, and
+            also send written word to me. I can't remember why I thought of adding the message feature. (ﾟｰﾟ)</p>
+    </div>
     <div class="center" id="form">
-        <p align="center">With the panel, a secret bearer can control the lights in my bedroom, and also send written word to me. I can't remember why I thought of adding the message feature. (ﾟｰﾟ)</p>
+        <img class="center" id='watermark' src='media/bulb.png' alt="Bulb" />
         <input type="text" size="23" placeholder="What is the secret?" id="secret">
         <input type="text" size="23" placeholder="Who are you?" id="username">
         <br>
