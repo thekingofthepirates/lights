@@ -66,9 +66,9 @@
         <button type="button" class="button" id="button_off">Off</button>
     </div>
     <script>
-        document.getElementById("send").addEventListener("click", send, false);
-        document.getElementById("on").addEventListener("click", on, false);
-        document.getElementById("off").addEventListener("click", off, false);
+        document.getElementById("button_send").addEventListener("click", send, false);
+        document.getElementById("button_on").addEventListener("click", on, false);
+        document.getElementById("button_off").addEventListener("click", off, false);
         function turn(state) {
             var secret = document.getElementById("secret").value;
             if (!secret) alert("Forgot something? The secret!")
