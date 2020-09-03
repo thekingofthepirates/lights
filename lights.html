@@ -53,16 +53,43 @@
             border: 1px solid orange;
             width: 100%
         }
+
+        /* The snackbar - position it at the bottom and in the middle of the screen */
+        #snackbar {
+            /* Hidden by default. Visible on click */
+            min-width: 250px;
+            /* Set a default minimum width */
+            margin-left: -125px;
+            /* Divide value of min-width by 2 */
+            background-color: #333;
+            /* Black background color */
+            color: #fff;
+            /* White text color */
+            text-align: center;
+            /* Centered text */
+            border-radius: 2px;
+            /* Rounded borders */
+            padding: 16px;
+            /* Padding */
+            position: fixed;
+            /* Sit on top of the screen */
+            z-index: 1;
+            /* Add a z-index if needed */
+            left: 50%;
+            /* Center the snackbar */
+            bottom: 30px;
+            /* 30px from the bottom */
+        }
     </style>
 </head>
 
 <body>
     <div id="description">
         <p align="center">With the panel, any secret bearer can control the lights in my bedroom, and
-            also send written word to me. I can't remember why I thought of adding the message feature. (ﾟｰﾟ)</p>
+            also send a written word to me. I can't remember why I thought of adding the message feature. (ﾟｰﾟ)</p>
     </div>
+    <img class="center" id='watermark' src='media/bulb.png' alt="Bulb" />
     <div class="center" id="form">
-        <img class="center" id='watermark' src='media/bulb.png' alt="Bulb" />
         <input type="text" required="required" size="23" placeholder="Who are you?" id="username">
         <input type="password" required="required" size="23" placeholder="What is the secret?" id="secret">
         <br>
@@ -73,15 +100,35 @@
         <br>
         <button type="button" class="button" id="button_off">Off</button>
     </div>
+    <div id="snackbar">Hey there! What up?</div>
     <script>
+        document.getElementById("username").addEventListener("change", reply_name, false);
+        function reply_name() {
+            notify(`Hey ${document.getElementById("username").value}! I am sentient.`);
+        }
+        document.getElementById("secret").addEventListener("change", reply_secret, false);
+        function reply_secret() {
+            notify(`I know thy secret!`);
+        }
+        document.getElementById("message").addEventListener("change", reply_message, false);
+        function reply_message() {
+            notify(`Is that it?`);
+        }
+
         document.getElementById("button_send").addEventListener("click", send, false);
         document.getElementById("button_on").addEventListener("click", on, false);
         document.getElementById("button_off").addEventListener("click", off, false);
         function turn(state) {
-            var secret = document.getElementById("secret").value;
-            if (!secret) alert("Forgot something? The secret!")
             var username = document.getElementById("username").value;
-            if (!username) alert("Who art thou? I demand to know!")
+            if (!username) {
+                notify("Who art thou? I demand to know!");
+                return;
+            }
+            var secret = document.getElementById("secret").value;
+            if (!secret) {
+                notify("Forgot something? The secret!");
+                return;
+            }
             if (secret && username && state) {
                 var body = JSON.stringify({
                     message: state,
@@ -92,6 +139,11 @@
                 xhr.open("POST", "https://xe0cdjylul.execute-api.ap-northeast-1.amazonaws.com/website", true);
                 xhr.setRequestHeader('Content-Type', 'application/json');
                 // xhr.setRequestHeader('Content-Length', body.length.toString());
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == XMLHttpRequest.DONE) {
+                        notify(xhr.responseText.replace("\n", "<br>"));
+                    }
+                }
                 xhr.send(body);
             }
         }
@@ -103,8 +155,38 @@
         }
         function send() {
             var message = document.getElementById("message").value;
-            if (!message) alert("You gotta send something! Please input the message!");
+            if (!message) notify("You gotta send something! Please input the message!");
             else turn(message);
+        }
+
+        function notify(message) {
+            var snackbar = document.getElementById("snackbar");
+            snackbar.innerHTML = message;
+            fade_in(snackbar);
+        }
+        function fade_out(element) {
+            var op = 1;  // initial opacity
+            var timer = setInterval(function () {
+                if (op <= 0.1) {
+                    clearInterval(timer);
+                    element.style.display = 'none';
+                }
+                element.style.opacity = op;
+                element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+                op -= op * 0.1;
+            }, 50);
+        }
+        function fade_in(element) {
+            var op = 0.1;  // initial opacity
+            element.style.display = 'block';
+            var timer = setInterval(function () {
+                if (op >= 1) {
+                    clearInterval(timer);
+                }
+                element.style.opacity = op;
+                element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+                op += op * 0.1;
+            }, 10);
         }
     </script>
 </body>
