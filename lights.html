@@ -94,8 +94,8 @@
         }
 
         #watermark {
-            width:35%;
-            height:auto;
+            width: 35%;
+            height: auto;
             top: 46%;
             opacity: 0.05;
             z-index: -1;
@@ -204,6 +204,24 @@
                 xhr.send(body);
             }
         }
+        function check() {
+            console.log("Check called");
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "https://xe0cdjylul.execute-api.ap-northeast-1.amazonaws.com/website");
+            // xhr.setRequestHeader('Content-Type', 'application/json');
+            // xhr.setRequestHeader('Content-Length', body.length.toString());
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == XMLHttpRequest.DONE) {
+                    notify(`Hey there! What up?<br>The lights are <i>${xhr.responseText}</i>!`);
+                    if (xhr.responseText == "On") {
+                    }
+                    if (xhr.responseText == "Off") {
+                    }
+                }
+            }
+            xhr.send();
+        }
+        check();
         function on() {
             turn("On");
         }
