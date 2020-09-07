@@ -211,7 +211,7 @@
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState == XMLHttpRequest.DONE) {
                         notify(xhr.responseText.replace("\n", "<br>"));
-                        if (state == "On" || state == "Off")
+                        if (xhr.status == 200 && (state == "On" || state == "Off"))
                             document.getElementById("bulb").src = `media/bulb_${state.toLowerCase()}.png`;
                     }
                 }
