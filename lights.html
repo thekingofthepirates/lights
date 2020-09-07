@@ -93,6 +93,14 @@
             width: 500px;
         }
 
+        #bulb {
+            width: 20%;
+            height: auto;
+            transform: rotate(180deg);
+            z-index: -1;
+            border: none;
+        }
+
         #watermark {
             width: 35%;
             height: auto;
@@ -104,7 +112,7 @@
         }
 
         #description {
-            border: 1px dashed #b5e853;
+            border: 1px solid #b5e853;
             width: 100%;
             background-color: #191919;
             color: #b5e853;
@@ -135,11 +143,14 @@
 </head>
 
 <body>
+    <img class="center" id='watermark' src='media/bulb_watermark.png' alt="Bulb" />
     <div id="description">
         <p align="center">With the panel below, any secret bearer can control the lights in my bedroom, and
             also send a written word to me. I can't remember why I thought of adding the message feature. (ﾟｰﾟ)</p>
     </div>
-    <img class="center" id='watermark' src='media/bulb.png' alt="Bulb" />
+    <div>
+        <img id='bulb' src='media/bulb_off.png' alt="A representation of the current status of the lights" />
+    </div>
     <div class="center" id="form">
         <div>
             <input type="text" required="required" placeholder="Who are you?" id="username">
@@ -154,6 +165,7 @@
             <input type="textarea" placeholder="What do you have to say?" id="message">
             <button type="button" class="button" id="button_send">Send</button>
         </div>
+        <audio id="switch" src="media/toggle.mp3"></audio>
     </div>
     <div id="snackbar">
         <div id="toast">Hey there! What up?</div>
@@ -199,33 +211,36 @@
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState == XMLHttpRequest.DONE) {
                         notify(xhr.responseText.replace("\n", "<br>"));
+                        if (state == "On" || state == "Off")
+                            document.getElementById("bulb").src = `media/bulb_${state.toLowerCase()}.png`;
                     }
                 }
                 xhr.send(body);
             }
         }
         function check() {
-            console.log("Check called");
             var xhr = new XMLHttpRequest();
             xhr.open("GET", "https://xe0cdjylul.execute-api.ap-northeast-1.amazonaws.com/website");
             // xhr.setRequestHeader('Content-Type', 'application/json');
             // xhr.setRequestHeader('Content-Length', body.length.toString());
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == XMLHttpRequest.DONE) {
-                    notify(`Hey there! What up?<br>The lights are <i>${xhr.responseText}</i>!`);
-                    if (xhr.responseText == "On") {
-                    }
-                    if (xhr.responseText == "Off") {
-                    }
+                    notify(`The lights are <i>${xhr.responseText}</i>!`);
+                    if (xhr.responseText == "On")
+                        document.getElementById("bulb").src = "media/bulb_on.png";
+                    if (xhr.responseText == "Off")
+                        document.getElementById("bulb").src = "media/bulb_off.png";
                 }
             }
             xhr.send();
         }
         check();
         function on() {
+            document.getElementById("switch").play()
             turn("On");
         }
         function off() {
+            document.getElementById("switch").play()
             turn("Off");
         }
         function send() {
