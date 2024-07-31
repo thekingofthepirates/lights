@@ -1,0 +1,17 @@
+repository: thekingofthepirates/lights
+github: [metadata]
+
+# google_analytics: UA-177062497-1
+google_tag: G-Q2RYGK7MYE
+
+server_endpoint: https://ncvjm2c662.execute-api.ap-northeast-1.amazonaws.com/website  # https://n4c7i1lz7f.execute-api.ap-northeast-1.amazonaws.com/website
+api_key: 4QFOtphlDKuucP5lcVkIa64JiV6JUv458JF7gnp9
+
+show_downloads: true
+
+plugins:
+    # - jekyll-feed
+    - jekyll-seo-tag
+    # - jekyll-sitemap
+    # - jekyll-redirect-from
+    - jekyll-github-metadata

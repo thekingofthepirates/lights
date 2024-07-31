@@ -149,13 +149,9 @@ description: Panel to control the lights in my room, if you have the secret!
         }
     </style>
 
-    <script async src="https://www.googletagmanager.com/gtag/js?G-Q2RYGK7MYE"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-Q2RYGK7MYE');
-    </script>
+    {% include analytics.html %}
+
+    {% seo %}
 </head>
 
 <body>
@@ -205,8 +201,8 @@ description: Panel to control the lights in my room, if you have the secret!
         document.getElementById("button_on").addEventListener("click", on, false);
         document.getElementById("button_off").addEventListener("click", off, false);
 
-        var serverEndpoint = "https://ncvjm2c662.execute-api.ap-northeast-1.amazonaws.com/website";
-        var apiKey = '4QFOtphlDKuucP5lcVkIa64JiV6JUv458JF7gnp9';
+        var serverEndpoint = "{{ site.server_endpoint }}";
+        var apiKey = '{{ site.api_key }}';
         function turn(state) {
             var username = document.getElementById("username").value;
             if (!username) {
