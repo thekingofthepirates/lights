@@ -1,7 +1,15 @@
+---
+layout: null
+title: Lights Panel
+description: Panel to control the lights in my room, if you have the secret!
+---
+
+<!DOCTYPE html>
 <html>
 
 <head>
-    <title>Panel</title>
+    <title>Lights Panel</title>
+    <meta name="description" content="Panel to control the lights in my room, if you have the secret!">
     <link rel="icon" type="image/x-icon" href="bulb.ico" />
     <style>
         html * {
@@ -41,8 +49,8 @@
             -moz-box-shadow: 0px 0px 5px #6192D1;
             outline: 0;
             padding: 4px;
-            -webkit-appearance: none;
-            -moz-appearance: none;
+            /* -webkit-appearance: none;
+            -moz-appearance: none; */
             border: 2px solid #333;
         }
 
@@ -55,7 +63,7 @@
         }
 
         #message {
-            width: 390px;
+            width: 398px;
             resize: both;
         }
 
@@ -73,8 +81,8 @@
             -moz-box-shadow: 0px 0px 5px #6192D1;
             outline: 0;
             padding: 4px;
-            -webkit-appearance: none;
-            -moz-appearance: none;
+            /* -webkit-appearance: none;
+            -moz-appearance: none; */
             border: 2px solid #333;
         }
 
@@ -85,12 +93,12 @@
 
         #button_on {
             background-color: #61ffc0;
-            width: 500px;
+            width: 520px;
         }
 
         #button_off {
             background-color: #ff0000;
-            width: 500px;
+            width: 520px;
         }
 
         #bulb {
@@ -140,20 +148,25 @@
             flex: 0px 0px 120px;
         }
     </style>
+
+    {% include analytics.html %}
+
+    {% seo %}
 </head>
 
 <body>
     <img class="center" id='watermark' src='media/bulb_watermark.png' alt="Bulb" />
     <div id="description">
         <p align="center">With the panel below, any secret bearer can control the lights in my bedroom, and
-            also send a written word to me. I can't remember why I thought of adding the message feature. (ﾟｰﾟ)</p>
+            also send a written word to me.<br />You'll be insulted with a random doozy if you enter the wrong
+            secret. Try It! (ﾟｰﾟ)</p>
     </div>
     <div>
         <img id='bulb' src='media/bulb_off.png' alt="A representation of the current status of the lights" />
     </div>
     <div class="center" id="form">
         <div>
-            <input type="text" required="required" placeholder="Who are you?" id="username">
+            <input type="text" required="required" placeholder="Who art thou?" id="username">
             <input type="password" required="required" placeholder="What is the secret?" id="secret">
         </div>
         <hr style="border-top: dashed 1px;color:#b5e853">
@@ -187,6 +200,9 @@
         document.getElementById("button_send").addEventListener("click", send, false);
         document.getElementById("button_on").addEventListener("click", on, false);
         document.getElementById("button_off").addEventListener("click", off, false);
+
+        var serverEndpoint = "{{ site.server_endpoint }}";
+        var apiKey = '{{ site.api_key }}';
         function turn(state) {
             var username = document.getElementById("username").value;
             if (!username) {
@@ -205,9 +221,10 @@
                     username: username
                 });
                 var xhr = new XMLHttpRequest();
-                xhr.open("POST", "https://xe0cdjylul.execute-api.ap-northeast-1.amazonaws.com/website", true);
+                xhr.open("POST", `${serverEndpoint}/mqtt/bedroom/lights`, true);
+                xhr.setRequestHeader('X-Api-Key', apiKey);
                 xhr.setRequestHeader('Content-Type', 'application/json');
-                // xhr.setRequestHeader('Content-Length', body.length.toString());
+                xhr.setRequestHeader('Content-Length', body.length.toString());
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState == XMLHttpRequest.DONE) {
                         notify(xhr.responseText.replace("\n", "<br>"));
@@ -220,7 +237,8 @@
         }
         function check() {
             var xhr = new XMLHttpRequest();
-            xhr.open("GET", "https://xe0cdjylul.execute-api.ap-northeast-1.amazonaws.com/website");
+            xhr.open("GET", `${serverEndpoint}/mqtt/bedroom/lights`);
+            xhr.setRequestHeader('X-Api-Key', apiKey);
             // xhr.setRequestHeader('Content-Type', 'application/json');
             // xhr.setRequestHeader('Content-Length', body.length.toString());
             xhr.onreadystatechange = function () {
@@ -280,3 +298,5 @@
         }
     </script>
 </body>
+
+</html>
